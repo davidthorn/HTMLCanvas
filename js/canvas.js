@@ -10,6 +10,10 @@ function draw_start_shapes()
    draw_seconds_hand( canvas , ctx );
     
    
+   
+   
+   
+   
     
 }
 
