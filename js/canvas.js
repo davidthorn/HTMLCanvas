@@ -4,8 +4,9 @@ function draw_start_shapes()
     var ctx = canvas.getContext('2d');
     
     draw_clock_background( ctx , canvas );
-    draw_clock_positions_12_3_6_9( canvas , ctx );
-       
+    //not needed any more
+    //draw_clock_positions_12_3_6_9( canvas , ctx );
+    draw_other_positions( canvas, ctx );   
    
     
    
@@ -76,6 +77,42 @@ function draw_clock_positions_12_3_6_9( canvas , ctx )
     ctx.fillStyle = "#ff00ff";
     ctx.fill();
     
+}
+
+
+function draw_other_positions( canvas, ctx )
+{
+    var pos_num = 12;
+    
+    while( pos_num > 0)
+    {
+           var angle = (360 / 12) * pos_num;
+           var radius = ((canvas.height / 2) - 50) - 60;  
+           var width = canvas.width;
+           var height = canvas.height;
+
+           var centerX = width / 2;
+           var centerY = height / 2;
+
+           var rect_width = 50;
+           var rect_height = 50;
+
+           var height_clock = (( height / 2 ) - 50) * 2;
+
+           var distance = 1;
+
+           var x = centerX + radius * Math.cos(-angle*Math.PI/180);
+           var y = centerY + radius * Math.sin(-angle*Math.PI/180);
+
+           ctx.beginPath();
+           ctx.rect( x - (rect_width / 2) , y - (rect_height / 2) , rect_width , rect_height );
+           ctx.stroke();
+           ctx.fillStyle = "#ff00ff";
+           ctx.fill();
+           pos_num--;
+    
+    }
+   
 }
 
 function set_default_sizes()
