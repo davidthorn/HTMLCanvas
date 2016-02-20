@@ -6,12 +6,44 @@ function draw_start_shapes()
     draw_clock_background( ctx , canvas );
     //not needed any more
     //draw_clock_positions_12_3_6_9( canvas , ctx );
-    draw_other_positions( canvas, ctx );   
-   
+   draw_other_positions( canvas, ctx );   
+   draw_seconds_hand( canvas , ctx );
     
    
     
 }
+
+function draw_seconds_hand( canvas , ctx )
+{
+    
+    var pos_num =18;
+    var angle = (360 / 60) * pos_num;
+    
+    var radius = ((canvas.height / 2) - 50) - 100;  
+    var width = canvas.width;
+    var height = canvas.height;
+    
+    var centerX = width / 2;
+    var centerY = height / 2;
+    
+    var rect_width = 50;
+    var rect_height = 50;
+    
+    var height_clock = (( height / 2 ) - 50) * 2;
+    
+    var n = -angle*Math.PI/180;
+    console.log(n);
+    var end_x = centerX + radius * Math.cos(-angle*Math.PI/180);
+    var end_y = centerY + radius * Math.sin(-angle*Math.PI/180);
+    console.log( end_x + " " + end_y );
+    
+    ctx.beginPath();
+    ctx.moveTo( centerX, centerY );
+    ctx.lineTo( end_x , end_y);
+    ctx.stroke();
+    
+}
+
 
 function draw_clock_background( ctx , canvas )
 {
@@ -87,6 +119,7 @@ function draw_other_positions( canvas, ctx )
     while( pos_num > 0)
     {
            var angle = (360 / 12) * pos_num;
+          
            var radius = ((canvas.height / 2) - 50) - 60;  
            var width = canvas.width;
            var height = canvas.height;
@@ -103,6 +136,8 @@ function draw_other_positions( canvas, ctx )
 
            var x = centerX + radius * Math.cos(-angle*Math.PI/180);
            var y = centerY + radius * Math.sin(-angle*Math.PI/180);
+
+           
 
            ctx.beginPath();
            ctx.rect( x - (rect_width / 2) , y - (rect_height / 2) , rect_width , rect_height );
