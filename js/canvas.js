@@ -1,15 +1,12 @@
 function draw_start_shapes()
 {
     var canvas = document.getElementById("myCanvas");
-    draw_clock_background( ctx , canvas );
-       
-       
-       
-    var width = canvas.width;
-    var height = canvas.height;
-    ctx.beginPath()
+    var ctx = canvas.getContext('2d');
     
-    ctx.moveTo(  width / 2 , height / 2 );
+    draw_clock_background( ctx , canvas );
+    draw_clock_positions_12_3_6_9( canvas , ctx );
+       
+   
     
    
     
@@ -31,6 +28,54 @@ function draw_clock_background( ctx , canvas )
     ctx.stroke();
     ctx.fillStyle = "#ddffdd";
     ctx.fill();
+}
+
+
+function draw_clock_positions_12_3_6_9( canvas , ctx )
+{
+    var radius = (canvas.height / 2) - 50;  
+    var width = canvas.width;
+    var height = canvas.height;
+    
+    var centerX = width / 2;
+    var centerY = height / 2;
+    
+    var rect_width = 50;
+    var rect_height = 50;
+    
+    var height_clock = (( height / 2 ) - 50) * 2;
+    
+    //create box and place at 12 position
+    ctx.beginPath();
+    ctx.rect( (width / 2) - rect_width / 2 , 25 , rect_width , rect_height );
+    
+    ctx.stroke();
+    ctx.fillStyle = "#ff00ff";
+    ctx.fill();
+    
+    
+    ctx.beginPath();
+    ctx.rect( (width / 2) - rect_width / 2 , 25 + height_clock , rect_width , rect_height );
+    ctx.stroke();
+    ctx.fillStyle = "#ff00ff";
+    ctx.fill();
+    
+    var pos_9_x = centerX - radius;
+    var pos_9_y = centerY - (rect_height / 2)
+    ctx.beginPath();
+    ctx.rect( pos_9_x - ( rect_width / 2) , pos_9_y , rect_width , rect_height );
+    ctx.stroke();
+    ctx.fillStyle = "#ff00ff";
+    ctx.fill();
+    
+    var pos_3_x = centerX + radius;
+    var pos_3_y = centerY - (rect_height / 2)
+    ctx.beginPath();
+    ctx.rect( pos_3_x - ( rect_width / 2) , pos_3_y , rect_width , rect_height );
+    ctx.stroke();
+    ctx.fillStyle = "#ff00ff";
+    ctx.fill();
+    
 }
 
 function set_default_sizes()
