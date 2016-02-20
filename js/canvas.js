@@ -2,7 +2,9 @@ function draw_start_shapes()
 {
     var canvas = document.getElementById("myCanvas");
     draw_clock_background( ctx , canvas );
-    
+       
+       
+       
     var width = canvas.width;
     var height = canvas.height;
     ctx.beginPath()
